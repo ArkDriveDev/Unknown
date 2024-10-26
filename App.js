@@ -93,7 +93,7 @@ class LeafletMap {
 }
 
 /* Instantiate for map zoomed coordinates referencing the containerId, center, zoom, and locationId */
-const apiKey = ''; 
+const apiKey = '56a134787af73dd1bc703ebe96d742dd'; 
 const myMap = new LeafletMap('map', [8.360004, 124.868419], 18, 'location_id', apiKey, 'Weather_id');
 
 /* JSON for loading markers */

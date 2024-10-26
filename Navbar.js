@@ -26,6 +26,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="#">Switch</a></li>
                                 <li><a class="dropdown-item" href="#">Profile</a></li>
+                                 <li><a class="dropdown-item" href="#">Scheduler</a></li>
                                 <li><hr class="dropdown-divider"></li>
                                 <li><a class="dropdown-item" href="#">Logout</a></li>
                             </ul>
