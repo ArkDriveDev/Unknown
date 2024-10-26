@@ -12,7 +12,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             <a class="nav-link active" aria-current="page" href="index.html" style="-webkit-text-fill-color: white; font-size: 1rem;">Home</a>
                         </li>
                         <li class="nav-item">
-                            <a class="nav-link" href="Records.html" style="-webkit-text-fill-color: white; font-size: 1rem;">Attendance</a>
+                            <a class="nav-link" href="Records\\Records.html" style="-webkit-text-fill-color: white; font-size: 1rem;">Attendance</a>
                         </li>
                         <form class="d-flex" role="search">
                             <input class="form-control me-2" type="text" id="searchBar" placeholder="Search Attendance Records" aria-label="Search" style="font-size: 0.9rem; width: 300px; height: 35px;">
