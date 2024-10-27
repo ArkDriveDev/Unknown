@@ -22,7 +22,7 @@ class LeafletMap {
         
         marker.on('click', () => {
             localStorage.setItem('clickedMarker', classroom);
-            window.location.href = 'Classroom.html';
+            window.location.href = 'Classes\\Classroom.html';
         });
         
         marker.bindPopup(classroom);

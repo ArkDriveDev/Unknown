@@ -87,7 +87,7 @@ class TodoList {
     }
     async populateComboBox() {
         try {
-            const response = await fetch('Classes\\Classes.json');
+            const response = await fetch('..\\Classes\\Classes.json');
             if (!response.ok) {
                 throw new Error('Network response was not ok');
             }
