@@ -5,6 +5,7 @@ class TodoList {
         this.todoInput = document.getElementById('todoInput');
         this.todoList = document.getElementById('todoList');
         this.select = document.getElementById('combo-box');
+        this.expiry = document.getElementById('date-picker');
 
         this.addButton.addEventListener('click', () => this.addOrUpdateTask());
         this.todoList.addEventListener('click', (e) => {
@@ -18,22 +19,27 @@ class TodoList {
 
     addOrUpdateTask() {
         const subject = this.select.value.trim();
+        const deadline = this.expiry.value.trim();
         const taskText = this.todoInput.value.trim();
         if (taskText) {
-            this.editingIndex === -1 ? this.addTask(taskText,subject) : this.updateTask(taskText,subject);
+            this.editingIndex === -1 ? this.addTask(taskText,subject,deadline) : this.updateTask(taskText,subject,deadline);
             this.todoInput.value = '';
         }
     }
 
-    addTask(taskText,subject) {
+    addTask(taskText,subject,deadline) {
+        if(deadline==''){
+            deadline="No deadline"
+        }
         const listItem = document.createElement('li');
         listItem.className = 'list-group-item todo-item';
         listItem.innerHTML = `
             <span class="Subject">${subject}</span>
+            <span class="deadline" style="display: block">${deadline}</span>
             <span class="task-text" style="display: block">${taskText}</span>
             <span class="timestamp" style="display: block; margin-top: 0.5rem; color: gray;">Date Added: ${new Date().toLocaleString()}</span>
             <div style="margin-top: 0.5rem;">
-                <button class="btn btn-success btn-sm doneButton">Done</button>
+                <button class="btn btn-success btn-sm doneButton">Upload</button>
                 <button class="btn btn-warning btn-sm editButton">Edit</button>
                 <button class="btn btn-danger btn-sm removeButton">Remove</button>
             </div>
@@ -50,8 +56,11 @@ class TodoList {
         buttons.forEach(button => button.disabled = true);
     }
 
-    updateTask(taskText) {
+    updateTask(taskText,subject,deadline) {
+        this.todoList.children[this.editingIndex].querySelector('.Subject').textContent = subject;
+        this.todoList.children[this.editingIndex].querySelector('.deadline').textContent = deadline;
         this.todoList.children[this.editingIndex].querySelector('.task-text').textContent = taskText;
+        //resets the button text from update to add
         this.resetEditing();
     }
 
@@ -63,6 +72,7 @@ class TodoList {
         const taskItem = event.target.closest('.todo-item');
         this.todoInput.value = taskItem.querySelector('.task-text').textContent;
         this.editingIndex = Array.from(this.todoList.children).indexOf(taskItem);
+        //change the button to add to update text
         this.addButton.textContent = 'Update';
     }
 
@@ -97,17 +107,6 @@ class TodoList {
         }
     }
     
-}
-
-class TimestampedTodoList extends TodoList {
-    addTask(taskText) {
-        super.addTask(taskText);
-        const taskItem = this.todoList.lastChild; // Get the newly added task
-        const timestamp = document.createElement('span');
-        timestamp.className = 'timestamp';
-        timestamp.textContent = new Date().toLocaleString();
-        taskItem.appendChild(timestamp);
-    }
 }
 
 document.addEventListener('DOMContentLoaded', () => new TodoList());
