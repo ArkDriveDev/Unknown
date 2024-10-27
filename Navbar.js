@@ -14,6 +14,9 @@ document.addEventListener('DOMContentLoaded', function() {
                         <li class="nav-item">
                             <a class="nav-link" href="Records\\Records.html" style="-webkit-text-fill-color: white; font-size: 1rem;">Attendance</a>
                         </li>
+                        <li class="nav-item">
+                            <a class="nav-link" href="" style="-webkit-text-fill-color: white; font-size: 1rem;">Activities</a>
+                        </li>
                         <form class="d-flex" role="search">
                             <input class="form-control me-2" type="text" id="searchBar" placeholder="Search Attendance Records" aria-label="Search" style="font-size: 0.9rem; width: 300px; height: 35px;">
                         </form>
