@@ -17,18 +17,20 @@ class TodoList {
     }
 
     addOrUpdateTask() {
+        const subject = this.select.value.trim();
         const taskText = this.todoInput.value.trim();
         if (taskText) {
-            this.editingIndex === -1 ? this.addTask(taskText) : this.updateTask(taskText);
+            this.editingIndex === -1 ? this.addTask(taskText,subject) : this.updateTask(taskText,subject);
             this.todoInput.value = '';
         }
     }
 
-    addTask(taskText) {
+    addTask(taskText,subject) {
         const listItem = document.createElement('li');
         listItem.className = 'list-group-item todo-item';
         listItem.innerHTML = `
-            <span class="task-text">${taskText}</span>
+            <span class="Subject">${subject}</span>
+            <span class="task-text" style="display: block">${taskText}</span>
             <span class="timestamp" style="display: block; margin-top: 0.5rem; color: gray;">Date Added: ${new Date().toLocaleString()}</span>
             <div style="margin-top: 0.5rem;">
                 <button class="btn btn-success btn-sm doneButton">Done</button>
@@ -93,9 +95,6 @@ class TodoList {
             // Optionally show an error message in the UI
             this.select.innerHTML = `<option disabled>Error loading options</option>`;
         }
-    }
-    updateSelectValue() {
-        this.select.value = ""; // Optionally clear the select when typing
     }
     
 }
