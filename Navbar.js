@@ -9,7 +9,7 @@ document.addEventListener('DOMContentLoaded', function() {
                 <div class="collapse navbar-collapse" id="navbarSupportedContent">
                     <ul class="navbar-nav me-auto mb-2 mb-lg-0">
                         <li class="nav-item">
-                            <a class="nav-link active" aria-current="page" href="index.html" style="-webkit-text-fill-color: white; font-size: 1rem;">Home</a>
+                            <a class="nav-link active" aria-current="page" href="..//index.html" style="-webkit-text-fill-color: white; font-size: 1rem;">Home</a>
                         </li>
                         <li class="nav-item">
                             <a class="nav-link" href="Records\\Records.html" style="-webkit-text-fill-color: white; font-size: 1rem;">Attendance</a>
@@ -26,7 +26,7 @@ document.addEventListener('DOMContentLoaded', function() {
                             <ul class="dropdown-menu">
                                 <li><a class="dropdown-item" href="#">Switch</a></li>
                                 <li><a class="dropdown-item" href="#">Profile</a></li>
-                                 <li><a class="dropdown-item" href="Todo.html">Instructor</a></li>
+                                 <li><a class="dropdown-item" href="Instructor\\Todo.html">Instructor</a></li>
                                 <li><hr class="dropdown-divider"></li>
                                 <li><a class="dropdown-item" href="#">Logout</a></li>
                             </ul>
