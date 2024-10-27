@@ -11,8 +11,8 @@ class TodoList {
         this.todoList.addEventListener('click', (e) => {
             const action = e.target.classList.contains('removeButton') ? 'remove' : 
                            e.target.classList.contains('editButton') ? 'edit' : 
-                           e.target.classList.contains('doneButton') ? 'done' : null;
-            if (action) this[action + 'Task'](e);
+                           e.target.classList.contains('uploadButton') ? 'upload' : null;
+            if (action) this[action + 'Task'](e);// so e means event, which pass down to method parameters
         });
         this.populateComboBox();
     }
@@ -39,24 +39,29 @@ class TodoList {
             <span class="task-text" style="display: block">${taskText}</span>
             <span class="timestamp" style="display: block; margin-top: 0.5rem; color: gray;">Date Added: ${new Date().toLocaleString()}</span>
             <div style="margin-top: 0.5rem;">
-                <button class="btn btn-success btn-sm doneButton">Upload</button>
-                <button class="btn btn-warning btn-sm editButton">Edit</button>
-                <button class="btn btn-danger btn-sm removeButton">Remove</button>
+                <button class="btn1 btn-sm uploadButton" style="background-color: #d4edda; color: #155724">Upload</button>
+                <button class="btn2 btn-sm editButton" style="background-color: #fff3cd; color: #856404">Edit</button>
+                <button class="btn3 btn-sm removeButton" style="background-color: #f8d7da; color: #721c24">Remove</button>
             </div>
         `;
         this.todoList.appendChild(listItem);
     }
 
-    doneTask(event) {
+    uploadTask(event) {
         const taskItem = event.target.closest('.todo-item');
-        const taskText = taskItem.querySelector('.task-text');
+        const taskText = taskItem.querySelector('.deadline');
+        const taskexp = taskItem.querySelector('.btn1');
         taskText.classList.toggle('completed'); 
+        taskexp.textContent = 'Uploaded';
 
         const buttons = taskItem.querySelectorAll('button');
         buttons.forEach(button => button.disabled = true);
     }
 
     updateTask(taskText,subject,deadline) {
+        if(deadline==''){
+            deadline="No deadline"
+        }
         this.todoList.children[this.editingIndex].querySelector('.Subject').textContent = subject;
         this.todoList.children[this.editingIndex].querySelector('.deadline').textContent = deadline;
         this.todoList.children[this.editingIndex].querySelector('.task-text').textContent = taskText;
