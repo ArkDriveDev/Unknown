@@ -4,6 +4,7 @@ class TodoList {
         this.addButton = document.getElementById('addButton');
         this.todoInput = document.getElementById('todoInput');
         this.todoList = document.getElementById('todoList');
+        this.select = document.getElementById('combo-box');
 
         this.addButton.addEventListener('click', () => this.addOrUpdateTask());
         this.todoList.addEventListener('click', (e) => {
@@ -12,6 +13,7 @@ class TodoList {
                            e.target.classList.contains('doneButton') ? 'done' : null;
             if (action) this[action + 'Task'](e);
         });
+        this.populateComboBox();
     }
 
     addOrUpdateTask() {
@@ -65,6 +67,35 @@ class TodoList {
     resetEditing() {
         this.editingIndex = -1;
         this.addButton.textContent = 'Add';
+    }
+    async populateComboBox() {
+        try {
+            const response = await fetch('Classes\\Classes.json');
+            if (!response.ok) {
+                throw new Error('Network response was not ok');
+            }
+            const data = await response.json();
+            
+            // Clear existing options
+            this.select.innerHTML = '';
+    
+            // Iterate through each category in the JSON
+            for (const [key, classes] of Object.entries(data)) {
+                classes.forEach(className => {
+                    const newOption = document.createElement('option');
+                    newOption.value = className; // or use key if needed
+                    newOption.textContent = className;
+                    this.select.appendChild(newOption);
+                });
+            }
+        } catch (error) {
+            console.error('There was a problem with the fetch operation:', error);
+            // Optionally show an error message in the UI
+            this.select.innerHTML = `<option disabled>Error loading options</option>`;
+        }
+    }
+    updateSelectValue() {
+        this.select.value = ""; // Optionally clear the select when typing
     }
     
 }
